@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 
 public class producto {
-    private int id;
+    private int id; 
     private String nombres;
     private InputStream foto;
     private String descripcion;

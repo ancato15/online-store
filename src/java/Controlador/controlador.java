@@ -7,7 +7,7 @@ package Controlador;
 
 import Modelo.producto;
 import Modelo.productoDAO;
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;

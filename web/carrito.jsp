@@ -2,7 +2,7 @@
     Document   : carrito
     Created on : 29/03/2020, 07:06:43 PM
     Author     : ANDRES
---%>
+--%> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
