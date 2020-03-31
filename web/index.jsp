@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inicio - Online Store</title>
         <script src="https://use.fontawesome.com/a62253f396.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
@@ -29,7 +30,8 @@
         <a class="nav-link active" href="#">Ofertas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Carrito</a>
+          <a class="nav-link active" href="controlador?accion=Carrito" tabindex="-1" aria-disabled="true"> 
+              <i class="fas fa-cart-plus"> (<label style="color: darkorange">${contador}</label>) </i> Carrito</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -64,9 +66,9 @@
                             <img scr="controladorIMG?id=${p.getId()}" width="200" height="180">
                         </div>
                         <div class="card-footer text-center"> 
-                            <label> ${p.getProducto()} </label>
+                            <label> ${p.getDescripcion()} </label>
                             <div>
-                                <a href="" class="btn btn-outline-info">Agregar a Carrito</a>
+                                <a href="controlador?accion=AgregarCarrito&id=${p.getId()}" class="btn btn-outline-info">Agregar a Carrito</a>
                                 <a href="" class="btn btn-danger">Comprar</a>
                             </div>
                         </div>

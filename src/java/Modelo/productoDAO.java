@@ -20,6 +20,27 @@ public class productoDAO {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
+    producto p = new producto();
+    
+    public producto listarId(int id){
+        String sql = "select * from producto where idproducto ="+id;
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()) {                
+                p.setId(rs.getInt(1));
+                p.setNombres(rs.getString(2));
+                p.setFoto(rs.getBinaryStream(3));
+                p.setDescripcion(rs.getString(4));
+                p.setPrecio(rs.getDouble(5));
+                p.setStock(rs.getInt(6));
+            }
+        } catch (SQLException e) {
+        
+        }
+        return p;
+    }
     
     public List listar(){
         List<producto>productos= new ArrayList<>();
@@ -29,7 +50,6 @@ public class productoDAO {
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()) {                
-                producto p = new producto();
                 p.setId(rs.getInt(1));
                 p.setNombres(rs.getString(2));
                 p.setFoto(rs.getBinaryStream(3));
@@ -53,7 +73,7 @@ public class productoDAO {
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next()) { 
                 inputStream = rs.getBinaryStream("foto");
             }
             bufferedInputStream = new BufferedInputStream(inputStream);
