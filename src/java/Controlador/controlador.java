@@ -43,6 +43,7 @@ public class controlador extends HttpServlet {
                 carrito car = new carrito();
                 car.setItem(item);
                 car.setIdproducto(p.getId());
+                car.setNombres(p.getNombres());
                 car.setDescripcion(p.getDescripcion());
                 car.setPrecioCompra(p.getPrecio());
                 car.setCantidad(cantidad);
@@ -52,8 +53,12 @@ public class controlador extends HttpServlet {
                 request.getRequestDispatcher("controlador?accion=home").forward(request, response);
                 break;
             case "Carrito":
-                totalPagar= 0.00;
+                totalPagar= 0.0;
                 request.setAttribute("carrito", listaCarrito);
+                for (int i=0; i<listaCarrito.size(); i++) {
+                    totalPagar=totalPagar+listaCarrito.get(i).getSubTotal();
+                }
+                request.setAttribute("totalPagar", totalPagar);
                 request.getRequestDispatcher("carrito.jsp").forward(request, response);
                 break;
             default:
