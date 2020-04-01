@@ -25,22 +25,44 @@ public class controlador extends HttpServlet {
     productoDAO pdao = new productoDAO();
     producto p = new producto();
     List<producto> productos = new ArrayList<>();
+    carrito car = new carrito();
     
     List<carrito> listaCarrito = new ArrayList<>();
     int item;
-    double totalPagar=0.00;
+    double totalPagar=0.0;
     int cantidad=1;
+    int idp;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         productos = pdao.listar();
         switch(accion){
-            case "AgregarCarrito":
-                int idp=Integer.parseInt(request.getParameter("id"));
+            case "Comprar":
+                totalPagar= 0.0;
+                idp=Integer.parseInt(request.getParameter("id"));
                 p=pdao.listarId(idp);
                 item=item+1;
-                carrito car = new carrito();
+                car.setItem(item);
+                car.setIdproducto(p.getId());
+                car.setNombres(p.getNombres());
+                car.setDescripcion(p.getDescripcion());
+                car.setPrecioCompra(p.getPrecio());
+                car.setCantidad(cantidad);
+                car.setSubTotal(cantidad*p.getPrecio());
+                listaCarrito.add(car);
+                for (int i=0; i<listaCarrito.size(); i++) {
+                    totalPagar=totalPagar+listaCarrito.get(i).getSubTotal();
+                }
+                request.setAttribute("totalPagar", totalPagar);
+                request.setAttribute("carrito", listaCarrito);
+                request.setAttribute("contador", listaCarrito.size());
+                request.getRequestDispatcher("carrito.jsp").forward(request, response);
+                break;
+            case "AgregarCarrito":
+                idp=Integer.parseInt(request.getParameter("id"));
+                p=pdao.listarId(idp);
+                item=item+1;
                 car.setItem(item);
                 car.setIdproducto(p.getId());
                 car.setNombres(p.getNombres());

@@ -69,7 +69,7 @@
                             <label> ${p.getDescripcion()} </label>
                             <div>
                                 <a href="controlador?accion=AgregarCarrito&id=${p.getId()}" class="btn btn-outline-info">Agregar a Carrito</a>
-                                <a href="" class="btn btn-danger">Comprar</a>
+                                <a href="controlador?accion=Comprar&id=${p.getId()}" class="btn btn-danger">Comprar</a>
                             </div>
                         </div>
                     </div>
